@@ -4,6 +4,7 @@ from ...models.user_model import User
 from ...schemas.user_schema import UserCreate, UserResponse
 from ...database import SessionDep
 from sqlmodel import Session, select
+from ...auth.authentication import get_current_user
 
 router = APIRouter(tags=["user"])
 
