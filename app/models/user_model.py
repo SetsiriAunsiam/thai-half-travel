@@ -1,5 +1,9 @@
 from datetime import datetime
-from sqlmodel import SQLModel, Field
+from typing import TYPE_CHECKING
+from sqlmodel import SQLModel, Field, Relationship
+
+if TYPE_CHECKING:
+    from .reservation_model import Reservation
 
 class User(SQLModel , table=True):
     __tablename__ = "users"
@@ -12,3 +16,6 @@ class User(SQLModel , table=True):
     phone: str | None = None
     created_at: datetime = Field(default_factory=datetime.now)
     updated_at: datetime = Field(default_factory=datetime.now)
+
+    # Relationships
+    user_reservations: list["Reservation"] = Relationship(back_populates="user")
